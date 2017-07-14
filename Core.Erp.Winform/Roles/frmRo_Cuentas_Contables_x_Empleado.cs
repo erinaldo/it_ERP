@@ -28,10 +28,43 @@ namespace Core.Erp.Winform.Roles
         ct_Plancta_Bus pla_cuenta_bus = new ct_Plancta_Bus();
         BindingList<ro_Cuentas_contables_x_empleado_Info> lista = new BindingList<ro_Cuentas_contables_x_empleado_Info>();
         ro_Cuentas_contables_x_empleado_Bus Cuentas_bus = new ro_Cuentas_contables_x_empleado_Bus();
+        List<ct_punto_cargo_Info> lst_punto_cargo = new List<ct_punto_cargo_Info>();
+        ct_punto_cargo_Bus bus_punto_cargo = new ct_punto_cargo_Bus();
+        ct_punto_cargo_grupo_Bus bus_grupo = new ct_punto_cargo_grupo_Bus();
+        List<ct_punto_cargo_grupo_Info> lst_grupo = new List<ct_punto_cargo_grupo_Info>();
         public frmRo_Cuentas_Contables_x_Empleado()
         {
             InitializeComponent();
         }
+
+        private void cargar_combros()
+        {
+            try
+            {
+                List_plan_Cuenta = pla_cuenta_bus.Get_List_Plancta(param.IdEmpresa, ref MensajeError);
+                cmb_cuentas.DataSource = List_plan_Cuenta;
+                cmb_cuentas.DisplayMember = "pc_Cuenta";
+                cmb_cuentas.ValueMember = "IdCtaCble";
+
+                List_Rubros = Rubro_bus.ConsultaGeneralPorEmpresa(param.IdEmpresa).Where(v => v.rub_Contabiliza_x_empleado == true && v.rub_nocontab == true).ToList();
+                cmbRubro.DataSource = List_Rubros;
+                cmbRubro.DisplayMember = "ru_descripcion";
+                cmbRubro.ValueMember = "IdRubro";
+
+                lst_grupo = bus_grupo.Get_List_punto_cargo_grupo(param.IdEmpresa, ref MensajeError);
+                cmb_Grupo.DataSource = lst_grupo;
+
+                lst_punto_cargo = bus_punto_cargo.Get_List_PuntoCargo(param.IdEmpresa);
+                cmb_punto_cargo.DataSource = lst_punto_cargo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log_Error_bus.Log_Error(ex.Message);
+            }
+        }
+
+
 
         public void CargarEmpleados()
         {
@@ -39,24 +72,12 @@ namespace Core.Erp.Winform.Roles
             {
                 //Carga combo Empleado
                 lis_empleados = empleado_bus.Get_List_Empleado_(param.IdEmpresa);
-                this.cmbEmpleado.Properties.DataSource = lis_empleados;
-
-                List_Rubros = Rubro_bus.ConsultaGeneralPorEmpresa(param.IdEmpresa).Where(v => v.rub_Contabiliza_x_empleado == true && v.rub_nocontab == true).ToList();
-                cmbRubro.DataSource = List_Rubros;
-                cmbRubro.DisplayMember = "ru_descripcion";
-                cmbRubro.ValueMember = "IdRubro";
-
-                List_plan_Cuenta = pla_cuenta_bus.Get_List_Plancta(param.IdEmpresa, ref MensajeError);
-                cmb_cuentas .DataSource= List_plan_Cuenta;
-                cmb_cuentas.DisplayMember = "pc_Cuenta";
-                cmb_cuentas.ValueMember = "IdCtaCble";
+                this.cmbEmpleado.Properties.DataSource = lis_empleados;                             
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
                 Log_Error_bus.Log_Error(ex.Message);
-
             }
         }
 
@@ -65,6 +86,7 @@ namespace Core.Erp.Winform.Roles
             try
             {
                 gridControlCuentas_Contables_x_empleado.DataSource = lista;
+                cargar_combros();
                 CargarEmpleados();
             }
             catch (Exception ex)
@@ -149,6 +171,7 @@ namespace Core.Erp.Winform.Roles
                 {
                     item.IdEmpresa = param.IdEmpresa;
                     item.IdEmpleado =Convert.ToInt32( cmbEmpleado.EditValue);
+                   
                 }
 
             }
@@ -264,6 +287,11 @@ namespace Core.Erp.Winform.Roles
                 MessageBox.Show(ex.Message);
                 Log_Error_bus.Log_Error(ex.Message);
             }
+        }
+
+        private void cmb_punto_cargo_Click(object sender, EventArgs e)
+        {
+
         }
 
        

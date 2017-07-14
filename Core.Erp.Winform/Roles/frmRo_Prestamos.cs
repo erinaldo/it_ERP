@@ -742,79 +742,47 @@ namespace Core.Erp.Winform.Roles
         {
             try
             {
-                double tasa = Convert.ToDouble(txeTasaInteres.EditValue);
-
-                 int mesAnio = 12; // 12 meses que tiene el año
-                // double tasa1 = (Convert.ToDouble(this.txtTasaInteres.Value) / periodo) / 100;
-                 double tasa1 = ((Convert.ToDouble(txeTasaInteres.EditValue) / (100 * mesAnio)));
-
                 List<ro_prestamo_detalle_Info> listaDetalle = new List<ro_prestamo_detalle_Info>();
-
                 for (int i = 1; i <= periodo; i++)
-                {                  
-                 
-                    double cuota = (monto * (tasa1 * (Math.Pow((1 + tasa1), periodo)) / ((Math.Pow((1 + tasa1), periodo)) - 1)));
-
-                    
-
+                {
                     ro_prestamo_detalle_Info item = new ro_prestamo_detalle_Info();
 
-                    if (i == 1)
-                    {                   
-                        int diaPago = (fechaPago.Day);
-                        int dia2 = (fecha2.Day);
 
-                        if (dia2 >= 27)
-                        {
-
-                            anio = (fecha2.Year);
-                            mes = (fecha2.Month);
-
-                            dayMes = System.DateTime.DaysInMonth(anio, mes);
-                            int resul_dia = (dayMes - dia2) + diaPago;
-            
-                            saldoInicial = monto;
-                            interes = Math.Round((((saldoInicial * (tasa / 100)) / 360) * resul_dia), 2);
-                            abonoCapital = Math.Round((cuota - interes), 2);
-                            totalPago = Math.Round((interes + abonoCapital), 2);
-                            saldo = Math.Round((saldoInicial - abonoCapital), 2);
-
-                        }
-
-                        else
-                        {                          
-                            int resul_dia = diaPago - dia2;
-
-                            saldoInicial = monto;
-                            interes = Math.Round((((saldoInicial * (tasa / 100)) / 360) * resul_dia), 2);
-                            abonoCapital = Math.Round((cuota - interes), 2);
-                            totalPago = Math.Round((interes + abonoCapital), 2);
-                            saldo = Math.Round((saldoInicial - abonoCapital), 2);
-                        }                                    
+                    if (rbtValorCuota.Checked == true)
+                    {
+                        cuota2 = Convert.ToDouble(txtValocuota.Text);
                     }
                     else
-                    {                                              
+                    {
+                        cuota2 = monto / periodo;
+                    }
+                    if (i == 1)
+                    {
+                        saldoInicial = monto;
+                        interes = 0;
+                        abonoCapital = 0;
+                        totalPago = Math.Round(cuota2, 2);
+                        saldo = Math.Round((saldoInicial - totalPago), 2);
+                    }
+                    else
+                    {
                         if (i > 1 && i <= periodo - 1)
                         {
-                                                    
-                            int dia = (fechaPago.Day);
-                            saldoInicial = saldo;
-                            interes = Math.Round((((saldoInicial * (tasa / 100)) / 360) * dia), 2);
-                            abonoCapital = Math.Round((cuota - interes), 2);
-                            totalPago = Math.Round((interes + abonoCapital), 2);
-                            saldo = Math.Round((saldoInicial - abonoCapital), 2);                          
+                            saldoInicial = Math.Round(saldo, 2);
+                            interes = 0;
+                            abonoCapital = 0;
+                            totalPago = Math.Round(cuota2, 2);
+                            saldo = Math.Round((saldoInicial - totalPago), 2);
                         }
-
                         else
                         {
                             if (i == periodo)
-                            {                            
-                                int dia = (fechaPago.Day);                          
-                                saldoInicial = saldo;
-                                interes = Math.Round((((saldoInicial * (tasa / 100)) / 360) * dia), 2);
-                                abonoCapital = saldoInicial;
-                                totalPago = Math.Round((interes + abonoCapital), 2);
-                                saldo = Math.Round((saldoInicial - abonoCapital), 2);                             
+                            {
+                                saldoInicial = Math.Round(saldo, 2);
+                                interes = 0;
+                                abonoCapital = 0;
+                                totalPago = Math.Round(cuota2, 2);
+                                saldo = Math.Round((saldoInicial - totalPago), 2);
                             }
                         }
                     }
@@ -831,19 +799,44 @@ namespace Core.Erp.Winform.Roles
                     item.Estado = "A";
                     item.IdNominaTipoLiqui = Convert.ToInt32(cmbnominaTipo.EditValue);
 
+                    fechaPago = fechaPago.AddMonths(1);
+                    int anio = 0;
+                    int mes = 0;
+
+                    mes = fechaPago.Month;
+                    anio = fechaPago.Year;
+                    if (mes == 2)
+                    {
+                        fechaPago = Convert.ToDateTime("28" + "/" + mes + "/" + anio);
+                    }
+                    else
+                    {
+                        fechaPago = Convert.ToDateTime("30" + "/" + mes + "/" + anio);
+                    }
+
+
+                    item.FechaPago = fechaPago;
+
+                    if (i == periodo)
+                    {
+                        if (rbtValorCuota.Checked == true)
+                        {
+                            if (Convert.ToInt32(txeMontoSol.Text) != cuota2 * (Convert.ToInt32(txeMontoSol.Text) / Convert.ToInt32(txtValocuota.Text)))
+                            {
+                                item.TotalCuota = item.TotalCuota + (Convert.ToInt32(txeMontoSol.Text) - (periodo * Convert.ToInt32(txtValocuota.Text)));
+
+                                if (saldo > 0)
+                                {
+                                    item.Saldo = saldoInicial - item.TotalCuota;
+
+                                }
+                            }
+                        }
+                    }
                     listaDetalle.Add(item);
 
-                    fechaPago = fechaPago.AddMonths(1);
-                    //calculo dia fin mes            
-                    anio = (fechaPago.Year);
-                    diaR = (fechaPago.Day);
-                    mes = (fechaPago.Month);
-                    dayMes = System.DateTime.DaysInMonth(anio, mes);
-                    //resto los dias
-                    int resul_diaR = dayMes - diaR;
-                    fechaPago = fechaPago.AddDays(resul_diaR);
-                    //calculo dia fin mes
                 }
+
                 DataSource = new BindingList<ro_prestamo_detalle_Info>(listaDetalle);
                 this.gridControlDetalle.DataSource = DataSource;
             }
@@ -851,7 +844,7 @@ namespace Core.Erp.Winform.Roles
             {
                 MessageBox.Show(ex.ToString());
                 Log_Error_bus.Log_Error(ex.ToString());
-            }         
+            }       
         }
 
         public  void CalculoPrestamoSinInteresMensual()
@@ -1124,6 +1117,7 @@ namespace Core.Erp.Winform.Roles
 
         public void CalculoPrestamoConInteresQuincenal()
         {
+
             try
             {
                 List<ro_prestamo_detalle_Info> listaDetalle = new List<ro_prestamo_detalle_Info>();

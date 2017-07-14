@@ -118,6 +118,10 @@
             this.colca_descripcion1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colca_estado1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colca_orden1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Col_IdNominaTipoLiqui = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_nomina_tipo_detalle = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Col_DescripcionProcesoNomina = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControlDetalle = new DevExpress.XtraGrid.GridControl();
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -146,10 +150,6 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCedula = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCodigoEmpleado = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Col_IdNominaTipoLiqui = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cmb_nomina_tipo_detalle = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Col_DescripcionProcesoNomina = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaReg.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFechaReg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIdPrestamo.Properties)).BeginInit();
@@ -186,6 +186,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbestadoPago)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_tipo_detalle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalPrestamo.Properties)).BeginInit();
@@ -199,8 +201,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEmpleados.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_tipo_detalle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).BeginInit();
             this.SuspendLayout();
             // 
             // CheckEstado
@@ -835,7 +835,7 @@
             this.gridColumnNum.OptionsColumn.AllowEdit = false;
             this.gridColumnNum.Visible = true;
             this.gridColumnNum.VisibleIndex = 0;
-            this.gridColumnNum.Width = 50;
+            this.gridColumnNum.Width = 46;
             // 
             // gridColumnCuota
             // 
@@ -845,7 +845,7 @@
             this.gridColumnCuota.OptionsColumn.AllowEdit = false;
             this.gridColumnCuota.Visible = true;
             this.gridColumnCuota.VisibleIndex = 2;
-            this.gridColumnCuota.Width = 157;
+            this.gridColumnCuota.Width = 115;
             // 
             // gridColumnIntres
             // 
@@ -870,7 +870,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)});
             this.gridColumnTotCuota.Visible = true;
             this.gridColumnTotCuota.VisibleIndex = 3;
-            this.gridColumnTotCuota.Width = 157;
+            this.gridColumnTotCuota.Width = 115;
             // 
             // gridColumnSaldo
             // 
@@ -879,7 +879,7 @@
             this.gridColumnSaldo.Name = "gridColumnSaldo";
             this.gridColumnSaldo.Visible = true;
             this.gridColumnSaldo.VisibleIndex = 4;
-            this.gridColumnSaldo.Width = 157;
+            this.gridColumnSaldo.Width = 115;
             // 
             // gridColumnFecha
             // 
@@ -888,7 +888,7 @@
             this.gridColumnFecha.Name = "gridColumnFecha";
             this.gridColumnFecha.Visible = true;
             this.gridColumnFecha.VisibleIndex = 5;
-            this.gridColumnFecha.Width = 157;
+            this.gridColumnFecha.Width = 115;
             // 
             // gridColumnObservacion
             // 
@@ -897,7 +897,7 @@
             this.gridColumnObservacion.Name = "gridColumnObservacion";
             this.gridColumnObservacion.Visible = true;
             this.gridColumnObservacion.VisibleIndex = 7;
-            this.gridColumnObservacion.Width = 169;
+            this.gridColumnObservacion.Width = 134;
             // 
             // gridColumnEstadoPago
             // 
@@ -914,7 +914,7 @@
             this.gridColumnCmbEstado.Name = "gridColumnCmbEstado";
             this.gridColumnCmbEstado.Visible = true;
             this.gridColumnCmbEstado.VisibleIndex = 6;
-            this.gridColumnCmbEstado.Width = 157;
+            this.gridColumnCmbEstado.Width = 115;
             // 
             // cmbestadoPago
             // 
@@ -973,6 +973,41 @@
             // 
             this.colca_orden1.FieldName = "ca_orden";
             this.colca_orden1.Name = "colca_orden1";
+            // 
+            // Col_IdNominaTipoLiqui
+            // 
+            this.Col_IdNominaTipoLiqui.Caption = "Proceso";
+            this.Col_IdNominaTipoLiqui.ColumnEdit = this.cmb_nomina_tipo_detalle;
+            this.Col_IdNominaTipoLiqui.FieldName = "IdNominaTipoLiqui";
+            this.Col_IdNominaTipoLiqui.Name = "Col_IdNominaTipoLiqui";
+            this.Col_IdNominaTipoLiqui.Visible = true;
+            this.Col_IdNominaTipoLiqui.VisibleIndex = 1;
+            this.Col_IdNominaTipoLiqui.Width = 115;
+            // 
+            // cmb_nomina_tipo_detalle
+            // 
+            this.cmb_nomina_tipo_detalle.AutoHeight = false;
+            this.cmb_nomina_tipo_detalle.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_nomina_tipo_detalle.Name = "cmb_nomina_tipo_detalle";
+            this.cmb_nomina_tipo_detalle.View = this.gridView13;
+            // 
+            // gridView13
+            // 
+            this.gridView13.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Col_DescripcionProcesoNomina});
+            this.gridView13.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView13.Name = "gridView13";
+            this.gridView13.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView13.OptionsView.ShowGroupPanel = false;
+            // 
+            // Col_DescripcionProcesoNomina
+            // 
+            this.Col_DescripcionProcesoNomina.Caption = "Proceso";
+            this.Col_DescripcionProcesoNomina.FieldName = "DescripcionProcesoNomina";
+            this.Col_DescripcionProcesoNomina.Name = "Col_DescripcionProcesoNomina";
+            this.Col_DescripcionProcesoNomina.Visible = true;
+            this.Col_DescripcionProcesoNomina.VisibleIndex = 0;
             // 
             // gridControlDetalle
             // 
@@ -1041,12 +1076,14 @@
             this.ucGe_Menu.Visible_btn_Imprimir_Reten = false;
             this.ucGe_Menu.Visible_btnAceptar = false;
             this.ucGe_Menu.Visible_btnAprobarGuardarSalir = false;
+            this.ucGe_Menu.Visible_btnContabilizar = false;
             this.ucGe_Menu.Visible_btnEstadosOC = false;
             this.ucGe_Menu.Visible_btnGuardar = true;
             this.ucGe_Menu.Visible_btnImpFrm = false;
             this.ucGe_Menu.Visible_btnImpLote = false;
             this.ucGe_Menu.Visible_btnImpRep = false;
             this.ucGe_Menu.Visible_btnImprimirSoporte = false;
+            this.ucGe_Menu.Visible_btnModificar = false;
             this.ucGe_Menu.Visible_btnproductos = false;
             this.ucGe_Menu.event_btnAnular_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnAnular_Click(this.ucGe_Menu_event_btnAnular_Click);
             this.ucGe_Menu.event_btnSalir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnSalir_Click(this.ucGe_Menu_event_btnSalir_Click_1);
@@ -1349,41 +1386,6 @@
             this.colCodigoEmpleado.VisibleIndex = 0;
             this.colCodigoEmpleado.Width = 68;
             // 
-            // Col_IdNominaTipoLiqui
-            // 
-            this.Col_IdNominaTipoLiqui.Caption = "Proceso";
-            this.Col_IdNominaTipoLiqui.ColumnEdit = this.cmb_nomina_tipo_detalle;
-            this.Col_IdNominaTipoLiqui.FieldName = "IdNominaTipoLiqui";
-            this.Col_IdNominaTipoLiqui.Name = "Col_IdNominaTipoLiqui";
-            this.Col_IdNominaTipoLiqui.Visible = true;
-            this.Col_IdNominaTipoLiqui.VisibleIndex = 1;
-            this.Col_IdNominaTipoLiqui.Width = 157;
-            // 
-            // cmb_nomina_tipo_detalle
-            // 
-            this.cmb_nomina_tipo_detalle.AutoHeight = false;
-            this.cmb_nomina_tipo_detalle.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmb_nomina_tipo_detalle.Name = "cmb_nomina_tipo_detalle";
-            this.cmb_nomina_tipo_detalle.View = this.gridView13;
-            // 
-            // gridView13
-            // 
-            this.gridView13.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Col_DescripcionProcesoNomina});
-            this.gridView13.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView13.Name = "gridView13";
-            this.gridView13.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView13.OptionsView.ShowGroupPanel = false;
-            // 
-            // Col_DescripcionProcesoNomina
-            // 
-            this.Col_DescripcionProcesoNomina.Caption = "Proceso";
-            this.Col_DescripcionProcesoNomina.FieldName = "DescripcionProcesoNomina";
-            this.Col_DescripcionProcesoNomina.Name = "Col_DescripcionProcesoNomina";
-            this.Col_DescripcionProcesoNomina.Visible = true;
-            this.Col_DescripcionProcesoNomina.VisibleIndex = 0;
-            // 
             // frmRo_Prestamos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1439,6 +1441,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbestadoPago)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_tipo_detalle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetalle)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1456,8 +1460,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEmpleados.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_tipo_detalle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).EndInit();
             this.ResumeLayout(false);
 
         }

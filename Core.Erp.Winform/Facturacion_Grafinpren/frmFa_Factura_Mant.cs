@@ -1880,37 +1880,45 @@ namespace Core.Erp.Winform.Facturacion_Grafinpren
         {
             try
             {
-
                 double cantidad = 0;
                 double precio = 0;
                 double precio_final = 0;
                 double Descuento_Unitario = 0;
-                double Porc_Descuento = 0;
-                double Porc_Iva = 0;
+                double Porc_Descuento = 0;                
                 double Descuento_total = 0;
-                double subtotal = 0;
-                double iva = 0;
+                double subtotal = 0;                
                 double Total_Vta = 0;
-
-                
+                double valor_iva = 0;
 
                 Info_Fact_Det = new fa_factura_det_info();
                 Info_Fact_Det = (fa_factura_det_info)this.gridView_Factura.GetFocusedRow();
 
+                if (colCodigo_Producto == e.Column)
+                {
+                    Info_Fact_Det.IdCod_Impuesto_Iva = param.iva.IdCod_Impuesto;
+                    Info_Fact_Det.vt_por_iva = param.iva.porcentaje;
+                }
+
+                cantidad = Info_Fact_Det.vt_cantidad;
+                precio = Info_Fact_Det.vt_Precio;
+                Porc_Descuento = Info_Fact_Det.vt_PorDescUnitario;
+                Descuento_Unitario = precio * (Porc_Descuento / 100);
+                Descuento_total = Descuento_Unitario * cantidad;
+                precio_final = precio - Descuento_Unitario;
+                subtotal = precio_final * cantidad;
+                valor_iva = subtotal * (Convert.ToDouble(Info_Fact_Det.vt_por_iva) / 100);
+                Total_Vta = subtotal + valor_iva;
+
+                Info_Fact_Det.vt_DescUnitario = Descuento_total;
+                Info_Fact_Det.vt_PrecioFinal = precio_final;
+                Info_Fact_Det.vt_Subtotal = subtotal;
+                Info_Fact_Det.vt_iva = valor_iva;
+                Info_Fact_Det.vt_total = Total_Vta;
+                
+                
 
 
-                precio = Convert.ToDouble(gridView_Factura.GetFocusedRowCellValue(colPrecio));
-                cantidad = Convert.ToInt32(gridView_Factura.GetFocusedRowCellValue(colCantidad));
-                Porc_Descuento = Convert.ToDouble(gridView_Factura.GetFocusedRowCellValue(colPorc_Descuento));
-                Descuento_total = ((cantidad * precio) * Porc_Descuento) / 100;
-                Descuento_Unitario = (Porc_Descuento * precio) / 100;
-                subtotal = (precio * cantidad)-Descuento_total;
-                iva = 0;
-                Porc_Iva = 0;
-                Total_Vta = 0;
-
-
-
+                /*
                 if (e.Column == colCantidad || e.Column==colPrecio)
                 {
                     gridView_Factura.SetFocusedRowCellValue(colDescuento, Descuento_total);
@@ -1991,7 +1999,7 @@ namespace Core.Erp.Winform.Facturacion_Grafinpren
                     gridView_Factura.SetFocusedRowCellValue(colPorce_Iva, Porc_Iva);
                     gridView_Factura.SetFocusedRowCellValue(colIva, iva);
                     gridView_Factura.SetFocusedRowCellValue(colTotal, (subtotal + iva - Descuento_total));
-                }
+                }*/
             }
             catch (Exception ex)
             {

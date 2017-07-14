@@ -51,6 +51,14 @@
             this.ColumNombre = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colpe_nombreCompleto1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIdEmpleado1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_Grupo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cmb_punto_cargo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -65,6 +73,10 @@
             this.panelControlEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEmpleado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_Grupo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_punto_cargo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_Menu
@@ -114,12 +126,14 @@
             this.ucGe_Menu.Visible_btn_Imprimir_Reten = false;
             this.ucGe_Menu.Visible_btnAceptar = false;
             this.ucGe_Menu.Visible_btnAprobarGuardarSalir = false;
+            this.ucGe_Menu.Visible_btnContabilizar = false;
             this.ucGe_Menu.Visible_btnEstadosOC = false;
             this.ucGe_Menu.Visible_btnGuardar = true;
             this.ucGe_Menu.Visible_btnImpFrm = false;
             this.ucGe_Menu.Visible_btnImpLote = false;
             this.ucGe_Menu.Visible_btnImpRep = false;
             this.ucGe_Menu.Visible_btnImprimirSoporte = false;
+            this.ucGe_Menu.Visible_btnModificar = false;
             this.ucGe_Menu.Visible_btnproductos = false;
             this.ucGe_Menu.event_btnGuardar_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnGuardar_Click(this.ucGe_Menu_event_btnGuardar_Click);
             this.ucGe_Menu.event_btnGuardar_y_Salir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnGuardar_y_Salir_Click(this.ucGe_Menu_event_btnGuardar_y_Salir_Click);
@@ -162,7 +176,9 @@
             this.gridControlCuentas_Contables_x_empleado.Name = "gridControlCuentas_Contables_x_empleado";
             this.gridControlCuentas_Contables_x_empleado.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmb_cuentas,
-            this.cmbRubro});
+            this.cmbRubro,
+            this.cmb_Grupo,
+            this.cmb_punto_cargo});
             this.gridControlCuentas_Contables_x_empleado.Size = new System.Drawing.Size(816, 321);
             this.gridControlCuentas_Contables_x_empleado.TabIndex = 0;
             this.gridControlCuentas_Contables_x_empleado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -172,10 +188,13 @@
             // 
             this.gridView_Contables_x_empleado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.cmb_plan_Cuenta,
-            this.Col_cmb_rubro});
+            this.Col_cmb_rubro,
+            this.gridColumn1,
+            this.gridColumn2});
             this.gridView_Contables_x_empleado.GridControl = this.gridControlCuentas_Contables_x_empleado;
             this.gridView_Contables_x_empleado.Name = "gridView_Contables_x_empleado";
             this.gridView_Contables_x_empleado.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gridView_Contables_x_empleado.OptionsView.ShowGroupPanel = false;
             this.gridView_Contables_x_empleado.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView_Contables_x_empleado_CellValueChanged);
             this.gridView_Contables_x_empleado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_Contables_x_empleado_KeyDown);
             // 
@@ -187,6 +206,7 @@
             this.cmb_plan_Cuenta.Name = "cmb_plan_Cuenta";
             this.cmb_plan_Cuenta.Visible = true;
             this.cmb_plan_Cuenta.VisibleIndex = 1;
+            this.cmb_plan_Cuenta.Width = 551;
             // 
             // cmb_cuentas
             // 
@@ -230,6 +250,7 @@
             this.Col_cmb_rubro.Name = "Col_cmb_rubro";
             this.Col_cmb_rubro.Visible = true;
             this.Col_cmb_rubro.VisibleIndex = 0;
+            this.Col_cmb_rubro.Width = 328;
             // 
             // cmbRubro
             // 
@@ -277,7 +298,7 @@
             // 
             // cmbEmpleado
             // 
-            this.cmbEmpleado.Location = new System.Drawing.Point(80, 9);
+            this.cmbEmpleado.Location = new System.Drawing.Point(71, 6);
             this.cmbEmpleado.Name = "cmbEmpleado";
             this.cmbEmpleado.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -337,6 +358,80 @@
             this.colIdEmpleado1.VisibleIndex = 3;
             this.colIdEmpleado1.Width = 242;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Punto cargo";
+            this.gridColumn1.FieldName = "IdPuntoCargo";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 3;
+            this.gridColumn1.Width = 269;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Grupo";
+            this.gridColumn2.FieldName = "IdPuntoCargo_grupo";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.Width = 266;
+            // 
+            // cmb_Grupo
+            // 
+            this.cmb_Grupo.AutoHeight = false;
+            this.cmb_Grupo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_Grupo.DisplayMember = "nom_punto_cargo_grupo2";
+            this.cmb_Grupo.Name = "cmb_Grupo";
+            this.cmb_Grupo.ValueMember = "IdPuntoCargo_grupo";
+            this.cmb_Grupo.View = this.repositoryItemSearchLookUpEdit1View;
+            // 
+            // repositoryItemSearchLookUpEdit1View
+            // 
+            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn3,
+            this.gridColumn4});
+            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
+            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // cmb_punto_cargo
+            // 
+            this.cmb_punto_cargo.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.True;
+            this.cmb_punto_cargo.AutoHeight = false;
+            this.cmb_punto_cargo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_punto_cargo.DisplayMember = "nom_punto_cargo2";
+            this.cmb_punto_cargo.Name = "cmb_punto_cargo";
+            this.cmb_punto_cargo.ReadOnly = true;
+            this.cmb_punto_cargo.ValueMember = "IdPuntoCargo";
+            this.cmb_punto_cargo.View = this.gridView3;
+            this.cmb_punto_cargo.Click += new System.EventHandler(this.cmb_punto_cargo_Click);
+            // 
+            // gridView3
+            // 
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "ID";
+            this.gridColumn3.FieldName = "IdPuntoCargo_grupo";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Grupo";
+            this.gridColumn4.FieldName = "nom_punto_cargo_grupo";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
+            // 
             // frmRo_Cuentas_Contables_x_Empleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,6 +458,10 @@
             this.panelControlEmpleado.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbEmpleado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_Grupo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_punto_cargo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -392,5 +491,13 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmbRubro;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraGrid.Columns.GridColumn Colru_descripcion;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmb_Grupo;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmb_punto_cargo;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
     }
 }
