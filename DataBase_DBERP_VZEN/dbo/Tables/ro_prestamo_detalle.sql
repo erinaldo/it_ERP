@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[ro_prestamo_detalle] (
+   [IdEmpresa] [int] NOT NULL,
+	[IdPrestamo] [numeric](18, 0) NOT NULL,
+	[NumCuota] [int] NOT NULL,
+	[SaldoInicial] [float] NOT NULL,
+	[Interes] [float] NOT NULL,
+	[AbonoCapital] [float] NOT NULL,
+	[TotalCuota] [float] NOT NULL,
+	[Saldo] [float] NOT NULL,
+	[FechaPago] [datetime] NOT NULL,
+	[EstadoPago] [varchar](10) NOT NULL,
+	[Estado] [char](1) NOT NULL,
+	[Observacion_det] [varchar](250) NOT NULL,
+	[IdUsuario] [varchar](20) NOT NULL,
+	[Fecha_Transac] [datetime] NOT NULL,
+	[IdUsuarioUltMod] [varchar](20) NULL,
+	[Fecha_UltMod] [datetime] NULL,
+	[IdUsuarioUltAnu] [varchar](20) NULL,
+	[Fecha_UltAnu] [datetime] NULL,
+	[nom_pc] [varchar](50) NULL,
+	[ip] [varchar](25) NULL,
+	[MotiAnula] [varchar](200) NULL,
+	[IdNominaTipoLiqui] [int] NULL,
+    CONSTRAINT [PK_ro_prestamo_detalle] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdPrestamo] ASC, [NumCuota] ASC),
+    CONSTRAINT [FK_ro_prestamo_detalle_ro_prestamo] FOREIGN KEY ([IdEmpresa], [IdPrestamo]) REFERENCES [dbo].[ro_prestamo] ([IdEmpresa], [IdPrestamo])
+);
+

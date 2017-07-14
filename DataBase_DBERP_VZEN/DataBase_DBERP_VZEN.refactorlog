@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="23c856ff-fc05-48f4-bdc6-de4bc0b5092a" ChangeDateTime="07/01/2016 20:54:51">
+    <Property Name="ElementName" Value="[dbo].[in_Motivo_Inven].[IdCtaCble_Gasto]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[in_Motivo_Inven]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdCtaCble_Costo" />
+  </Operation>
+</Operations>

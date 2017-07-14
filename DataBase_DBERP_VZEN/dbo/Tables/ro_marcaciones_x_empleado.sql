@@ -1,0 +1,38 @@
+﻿CREATE TABLE [dbo].[ro_marcaciones_x_empleado](
+	[IdEmpresa] [int] NOT NULL,
+	[IdRegistro] [varchar](50) NOT NULL,
+	[IdEmpleado] [numeric](18, 0) NOT NULL,
+	[IdTipoMarcaciones] [varchar](20) NOT NULL,
+	[secuencia] [numeric](10, 0) NOT NULL,
+	[IdNomina] [int] NULL,
+	[IdPeriodo] [int] NULL,
+	[es_Hora] [time](0) NULL,
+	[es_fechaRegistro] [datetime] NULL,
+	[es_anio] [int] NULL,
+	[es_mes] [int] NULL,
+	[es_semana] [int] NULL,
+	[es_dia] [int] NULL,
+	[es_sdia] [char](15) NULL,
+	[es_idDia] [int] NULL,
+	[es_EsActualizacion] [char](1) NULL,
+	[IdTipoMarcaciones_Biometrico] [varchar](20) NULL,
+	[Observacion] [varchar](200) NULL,
+	[IdUsuario] [varchar](20) NOT NULL,
+	[Estado] [char](1) NOT NULL,
+	[Fecha_Transac] [datetime] NOT NULL,
+	[Ip] [varchar](30) NULL,
+	[IdUsuarioUltModi] [varchar](20) NULL,
+	[Fecha_UltMod] [datetime] NULL,
+	[IdUsuarioUltAnu] [varchar](20) NULL,
+	[Fecha_UltAnu] [datetime] NULL,
+	[nom_pc] [varchar](50) NULL,
+	[Motivo_Anu] [varchar](200) NULL,
+ CONSTRAINT [PK_ro_marcaciones_x_empleado] PRIMARY KEY CLUSTERED 
+(
+	[IdEmpresa] ASC,
+	[IdRegistro] ASC,
+	[IdEmpleado] ASC,
+	[IdTipoMarcaciones] ASC,
+	[secuencia] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
