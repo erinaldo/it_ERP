@@ -24,5 +24,6 @@ namespace Core.Erp.Data
         public Nullable<bool> Gozadas_Pgadas { get; set; }
         public double ValorCancelado { get; set; }
         public Nullable<double> Iess { get; set; }
+        public int IdLiquidacion { get; set; }
     }
 }

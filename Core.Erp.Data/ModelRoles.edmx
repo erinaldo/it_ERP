@@ -199,7 +199,8 @@
       [ro_periodo_x_ro_Nomina_TipoLiquiDisponibles].[FechaHoraAnul] AS [FechaHoraAnul], 
       [ro_periodo_x_ro_Nomina_TipoLiquiDisponibles].[IdUsuarioUltAnu] AS [IdUsuarioUltAnu], 
       [ro_periodo_x_ro_Nomina_TipoLiquiDisponibles].[MotivoAnulacion] AS [MotivoAnulacion], 
-      [ro_periodo_x_ro_Nomina_TipoLiquiDisponibles].[Cod_region] AS [Cod_region]
+      [ro_periodo_x_ro_Nomina_TipoLiquiDisponibles].[Cod_region] AS [Cod_region], 
+      [ro_periodo_x_ro_Nomina_TipoLiquiDisponibles].[Carga_Todos_Empleados] AS [Carga_Todos_Empleados]
       FROM [dbo].[ro_periodo_x_ro_Nomina_TipoLiquiDisponibles] AS [ro_periodo_x_ro_Nomina_TipoLiquiDisponibles]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwRo_Acta_Finiquito_X_Empleado" EntityType="DBERPModelRoles.Store.vwRo_Acta_Finiquito_X_Empleado" store:Type="Views" store:Schema="dbo" store:Name="vwRo_Acta_Finiquito_X_Empleado">
@@ -2267,7 +2268,7 @@
             <DefiningQuery>SELECT 
       [vwro_Solicitud_Vacaciones_x_empleado].[IdEmpresa] AS [IdEmpresa], 
       [vwro_Solicitud_Vacaciones_x_empleado].[IdNomina_Tipo] AS [IdNomina_Tipo], 
-      [vwro_Solicitud_Vacaciones_x_empleado].[IdSolicitud_Vacaciones] AS [IdSolicitud_Vacaciones], 
+      [vwro_Solicitud_Vacaciones_x_empleado].[IdLiquidacion] AS [IdLiquidacion], 
       [vwro_Solicitud_Vacaciones_x_empleado].[IdEmpleado] AS [IdEmpleado], 
       [vwro_Solicitud_Vacaciones_x_empleado].[Dias_a_disfrutar] AS [Dias_a_disfrutar], 
       [vwro_Solicitud_Vacaciones_x_empleado].[Fecha_Desde] AS [Fecha_Desde], 
@@ -3015,6 +3016,8 @@
           <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
           <Property Name="IdRubro" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="IdCtaCble" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="IdPunto_cargo" Type="int" />
+          <Property Name="IdPunto_cargo_grupo" Type="int" />
         </EntityType>
         <EntityType Name="ro_Departamento">
           <Key>
@@ -3037,7 +3040,7 @@
           <Property Name="MotiAnula" Type="varchar" MaxLength="200" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.ro_dias' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.ro_dias' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="ro_dias">
           <Key>
@@ -4244,7 +4247,7 @@
           <Property Name="FechaPago" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.ro_Rol_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.ro_Rol_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="ro_Rol_x_Empleado">
           <Key>
@@ -4598,7 +4601,7 @@
           <Property Name="IdCodigo2" Type="varchar" MaxLength="5" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.ro_periodo_x_ro_Nomina_TipoLiquiDisponibles' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.ro_periodo_x_ro_Nomina_TipoLiquiDisponibles' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="ro_periodo_x_ro_Nomina_TipoLiquiDisponibles">
           <Key>
@@ -4622,9 +4625,10 @@
           <Property Name="IdUsuarioUltAnu" Type="varchar" MaxLength="25" />
           <Property Name="MotivoAnulacion" Type="varchar" MaxLength="100" />
           <Property Name="Cod_region" Type="varchar" MaxLength="10" />
+          <Property Name="Carga_Todos_Empleados" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Acta_Finiquito_X_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Acta_Finiquito_X_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Acta_Finiquito_X_Empleado">
           <Key>
@@ -4667,7 +4671,7 @@
           <Property Name="Valor" Type="float" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_ActaFiniquito' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_ActaFiniquito' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_ActaFiniquito">
           <Key>
@@ -4741,7 +4745,7 @@
           <Property Name="em_codigo" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Archivos_Bancos_Generacion' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Archivos_Bancos_Generacion' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Archivos_Bancos_Generacion">
           <Key>
@@ -4785,7 +4789,7 @@
           <Property Name="Valor" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Archivos_Bancos_Generacion_det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Archivos_Bancos_Generacion_det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Archivos_Bancos_Generacion_det">
           <Key>
@@ -4872,7 +4876,7 @@
           <Property Name="IdArchivo" Type="numeric" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_archivos_bancos_generacion_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_archivos_bancos_generacion_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_archivos_bancos_generacion_x_empleado">
           <Key>
@@ -4893,7 +4897,7 @@
           <Property Name="Valor" Type="float" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Area_x_Division' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Area_x_Division' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Area_x_Division">
           <Key>
@@ -4913,7 +4917,7 @@
           <Property Name="MotiAnula" Type="varchar" MaxLength="200" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Asignacion_Implemento_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Asignacion_Implemento_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Asignacion_Implemento_x_Empleado">
           <Key>
@@ -4936,7 +4940,7 @@
           <Property Name="pe_nombreCompleto" Type="varchar" Nullable="false" MaxLength="200" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_CargaFamiliar_X_Catalogo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_CargaFamiliar_X_Catalogo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_CargaFamiliar_X_Catalogo">
           <Key>
@@ -4962,7 +4966,7 @@
           <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Cargo_Empleado_X_Periodo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Cargo_Empleado_X_Periodo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Cargo_Empleado_X_Periodo">
           <Key>
@@ -5084,7 +5088,7 @@
           <Property Name="talla_zapato" Type="float" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Catalogo_Bancos' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Catalogo_Bancos' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Catalogo_Bancos">
           <Key>
@@ -5098,7 +5102,7 @@
           <Property Name="tc_Descripcion" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_CentroCostoXEmpleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_CentroCostoXEmpleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_CentroCostoXEmpleado">
           <Key>
@@ -5122,7 +5126,7 @@
           <Property Name="IdNivel" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_CentroCostoXEmpresa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_CentroCostoXEmpresa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_CentroCostoXEmpresa">
           <Key>
@@ -5148,7 +5152,7 @@
           <Property Name="IdUsuario" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Conf_Rubros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Conf_Rubros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Conf_Rubros">
           <Key>
@@ -5169,7 +5173,7 @@
           <Property Name="NombreCorto" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Conf_Rubros_Acumulados' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Conf_Rubros_Acumulados' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Conf_Rubros_Acumulados">
           <Key>
@@ -5191,7 +5195,7 @@
           <Property Name="FechaFin" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Conf_Rubros_Acumulados_x_Empresa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Conf_Rubros_Acumulados_x_Empresa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Conf_Rubros_Acumulados_x_Empresa">
           <Key>
@@ -5205,7 +5209,7 @@
           <Property Name="Configurable" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Conf_Rubros_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Conf_Rubros_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Conf_Rubros_Empleado">
           <Key>
@@ -5229,7 +5233,7 @@
           <Property Name="secuencia" Type="numeric" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Config_Rubros_x_Empresa_AportaIess' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Config_Rubros_x_Empresa_AportaIess' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Config_Rubros_x_Empresa_AportaIess">
           <Key>
@@ -5254,7 +5258,7 @@
           <Property Name="ip" Type="int" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Config_rubros_x_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Config_rubros_x_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Config_rubros_x_Prestamo">
           <Key>
@@ -5276,7 +5280,7 @@
           <Property Name="ru_estado_prest" Type="char" Nullable="false" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_ConfLiqui_X_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_ConfLiqui_X_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_ConfLiqui_X_Empleado">
           <Key>
@@ -5290,7 +5294,7 @@
           <Property Name="SecuPresentacion" Type="int" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Contrato' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Contrato' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Contrato">
           <Key>
@@ -5330,7 +5334,7 @@
           <Property Name="em_codigo" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Departamento_X_Area' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Departamento_X_Area' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Departamento_X_Area">
           <Key>
@@ -5361,7 +5365,7 @@
           <Property Name="MotiAnula" Type="varchar" MaxLength="200" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_DiasFaltados_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_DiasFaltados_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_DiasFaltados_x_Empleado">
           <Key>
@@ -5415,7 +5419,7 @@
           <Property Name="CodCatalogo" Type="varchar" Nullable="false" MaxLength="10" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRO_Egreso_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRO_Egreso_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRO_Egreso_x_Empleado">
           <Key>
@@ -5433,7 +5437,7 @@
           <Property Name="Total_Egr" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.VWRO_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.VWRO_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="VWRO_empleado">
           <Key>
@@ -5577,7 +5581,7 @@
           <Property Name="Nomina" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto">
           <Key>
@@ -5597,7 +5601,7 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="150" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Empleado_Novedades' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Empleado_Novedades' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Empleado_Novedades">
           <Key>
@@ -5664,7 +5668,7 @@
           <Property Name="Num_Horas" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Empleado_Novedades_Rubros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Empleado_Novedades_Rubros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Empleado_Novedades_Rubros">
           <Key>
@@ -5700,7 +5704,7 @@
           <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Empleado_Nuevo_Sueldo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Empleado_Nuevo_Sueldo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Empleado_Nuevo_Sueldo">
           <Key>
@@ -5835,7 +5839,7 @@
           <Property Name="Secuencia" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_empleado_por_novedades' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_empleado_por_novedades' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleado_por_novedades">
           <Key>
@@ -5866,7 +5870,7 @@
           <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_empleado_por_novedades_cabecera' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_empleado_por_novedades_cabecera' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleado_por_novedades_cabecera">
           <Key>
@@ -5895,7 +5899,7 @@
           <Property Name="Fecha" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Empleado_Rol_Detalle' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Empleado_Rol_Detalle' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Empleado_Rol_Detalle">
           <Key>
@@ -5976,7 +5980,7 @@
           <Property Name="ba_descripcion" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Empleado_TipoNomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Empleado_TipoNomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Empleado_TipoNomina">
           <Key>
@@ -5995,7 +5999,7 @@
           <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Empleado_TNomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Empleado_TNomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Empleado_TNomina">
           <Key>
@@ -6009,7 +6013,7 @@
           <Property Name="IdEmpleado" Type="numeric" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Empleado_X_Nomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Empleado_X_Nomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Empleado_X_Nomina">
           <Key>
@@ -6145,7 +6149,7 @@
           <Property Name="Cod_Region" Type="varchar" MaxLength="10" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRO_Empleado_X_Nomina_Liquidar' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRO_Empleado_X_Nomina_Liquidar' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRO_Empleado_X_Nomina_Liquidar">
           <Key>
@@ -6284,7 +6288,7 @@
           <Property Name="si_tiene_rubros_fijo" Type="numeric" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRO_empleado_x_Perido_Nomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRO_empleado_x_Perido_Nomina' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRO_empleado_x_Perido_Nomina">
           <Key>
@@ -6307,7 +6311,7 @@
           <Property Name="pe_nombre" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_empleado_x_Proyeccion_Gastos_Personales' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_empleado_x_Proyeccion_Gastos_Personales' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_empleado_x_Proyeccion_Gastos_Personales">
           <Key>
@@ -6335,7 +6339,7 @@
           <Property Name="nom_tipo_gasto" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_empleadoXdepXcargo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_empleadoXdepXcargo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleadoXdepXcargo">
           <Key>
@@ -6474,7 +6478,7 @@
           <Property Name="Cod_Region" Type="varchar" MaxLength="10" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_FormaPago_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_FormaPago_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_FormaPago_Prestamo">
           <Key>
@@ -6493,7 +6497,7 @@
           <Property Name="ca_estado" Type="varchar" Nullable="false" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Generar_Decimo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Generar_Decimo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Generar_Decimo">
           <Key>
@@ -6602,7 +6606,7 @@
           <Property Name="rub_grupo" Type="int" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_historicoSueldovsEmpl' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_historicoSueldovsEmpl' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_historicoSueldovsEmpl">
           <Key>
@@ -6638,7 +6642,7 @@
           <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_HorasExtrasXEmpleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_HorasExtrasXEmpleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_HorasExtrasXEmpleado">
           <Key>
@@ -6697,7 +6701,7 @@
           <Property Name="es_HorasExtrasAutorizadas" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Ing_Egr_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Ing_Egr_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Ing_Egr_x_Empleado">
           <Key>
@@ -6743,7 +6747,7 @@
           <Property Name="Unid_Medida" Type="varchar" MaxLength="5" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Ing_Egre_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Ing_Egre_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Ing_Egre_x_Empleado">
           <Key>
@@ -6796,7 +6800,7 @@
           <Property Name="IdDepartamento" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRO_Ingreso_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRO_Ingreso_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRO_Ingreso_x_Empleado">
           <Key>
@@ -6814,7 +6818,7 @@
           <Property Name="Total_Ing" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_marcaciones_Equipo_x_TipoMarcacion' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_marcaciones_Equipo_x_TipoMarcacion' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_marcaciones_Equipo_x_TipoMarcacion">
           <Key>
@@ -6826,7 +6830,7 @@
           <Property Name="IdTipoMarcaciones_Biometrico" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_marcaciones_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_marcaciones_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_marcaciones_x_empleado">
           <Key>
@@ -6871,7 +6875,7 @@
           <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Motivo_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Motivo_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Motivo_Prestamo">
           <Key>
@@ -6890,7 +6894,7 @@
           <Property Name="ca_estado" Type="varchar" Nullable="false" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_MotivoPrestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_MotivoPrestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_MotivoPrestamo">
           <Key>
@@ -6909,7 +6913,7 @@
           <Property Name="IdTipoCatalogo" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Nomina_Empleado_x_Rubro' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Nomina_Empleado_x_Rubro' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Nomina_Empleado_x_Rubro">
           <Key>
@@ -6936,7 +6940,7 @@
           <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Nomina_X_Horas_Extras_Totales' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Nomina_X_Horas_Extras_Totales' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Nomina_X_Horas_Extras_Totales">
           <Key>
@@ -6956,7 +6960,7 @@
           <Property Name="hora_extra100" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Nomina_x_Liqui_x_Rubro_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Nomina_x_Liqui_x_Rubro_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Nomina_x_Liqui_x_Rubro_x_Empleado">
           <Key>
@@ -6983,7 +6987,7 @@
           <Property Name="Valor" Type="money" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Nomina_x_periodo_x_rubro_x_empl_valor' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Nomina_x_periodo_x_rubro_x_empl_valor' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Nomina_x_periodo_x_rubro_x_empl_valor">
           <Key>
@@ -7005,7 +7009,7 @@
           <Property Name="Valor" Type="float" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_NominaTipoLiquiOrdenXRubro' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_NominaTipoLiquiOrdenXRubro' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_NominaTipoLiquiOrdenXRubro">
           <Key>
@@ -7044,7 +7048,7 @@
           <Property Name="rub_guarda_rol" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Novedades_Batch' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Novedades_Batch' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Novedades_Batch">
           <Key>
@@ -7066,7 +7070,7 @@
           <Property Name="IdCarga" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Novedades_X_Rubros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Novedades_X_Rubros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Novedades_X_Rubros">
           <Key>
@@ -7098,7 +7102,7 @@
           <Property Name="IdPeriodo" Type="int" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Pago_Banco_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Pago_Banco_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Pago_Banco_Empleado">
           <Key>
@@ -7120,7 +7124,7 @@
           <Property Name="pe_nombreCompleto" Type="varchar" Nullable="false" MaxLength="200" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Parametros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Parametros' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Parametros">
           <Key>
@@ -7148,7 +7152,7 @@
           <Property Name="IdCtaCble_Credito" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Parametros_Contables' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Parametros_Contables' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Parametros_Contables">
           <Key>
@@ -7194,7 +7198,7 @@
           <Property Name="rub_Contabiliza_x_empleado" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_PeriocidadPago' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_PeriocidadPago' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_PeriocidadPago">
           <Key>
@@ -7213,7 +7217,7 @@
           <Property Name="IdTipoCatalogo" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_periodo_x_ro_Nomina_TipoLiqui' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_periodo_x_ro_Nomina_TipoLiqui' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_periodo_x_ro_Nomina_TipoLiqui">
           <Key>
@@ -7245,7 +7249,7 @@
           <Property Name="Carga_Todos_Empleados" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_periodo_x_ro_Nomina_TipoLiqui_Asignado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_periodo_x_ro_Nomina_TipoLiqui_Asignado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_periodo_x_ro_Nomina_TipoLiqui_Asignado">
           <Key>
@@ -7268,7 +7272,7 @@
           <Property Name="Tipo" Type="varchar" Nullable="false" MaxLength="18" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Permiso_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Permiso_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Permiso_x_Empleado">
           <Key>
@@ -7322,7 +7326,7 @@
           <Property Name="IdNovedad" Type="numeric" Precision="9" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Planificacion_Horarios_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Planificacion_Horarios_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Planificacion_Horarios_x_Empleado">
           <Key>
@@ -7355,7 +7359,7 @@
           <Property Name="IdCalendario" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Prestamo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Prestamo">
           <Key>
@@ -7422,7 +7426,7 @@
           <Property Name="IdPersona" Type="numeric" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Prestamo_Detalle' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Prestamo_Detalle' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Prestamo_Detalle">
           <Key>
@@ -7464,7 +7468,7 @@
           <Property Name="IdNominaTipoLiqui" Type="int" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Prestamo_TotalCobrado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Prestamo_TotalCobrado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Prestamo_TotalCobrado">
           <Key>
@@ -7476,7 +7480,7 @@
           <Property Name="TotalCobrado" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Rdep_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Rdep_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Rdep_x_Empleado">
           <Key>
@@ -7566,7 +7570,7 @@
           <Property Name="MotiAnula" Type="varchar" MaxLength="200" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_ro_Asignacion_Implemento_x_Empleado_xi_existen_pemdientes_devolver' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_ro_Asignacion_Implemento_x_Empleado_xi_existen_pemdientes_devolver' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_ro_Asignacion_Implemento_x_Empleado_xi_existen_pemdientes_devolver">
           <Key>
@@ -7585,7 +7589,7 @@
           <Property Name="Estado_implemnto" Type="varchar" Nullable="false" MaxLength="25" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_ro_Ing_Egre_x_Empleado_x_totalValor' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_ro_Ing_Egre_x_Empleado_x_totalValor' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_ro_Ing_Egre_x_Empleado_x_totalValor">
           <Key>
@@ -7605,7 +7609,7 @@
           <Property Name="Valor" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_ro_tipo_gastos_personales_tabla_valores_x_anio' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_ro_tipo_gastos_personales_tabla_valores_x_anio' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_ro_tipo_gastos_personales_tabla_valores_x_anio">
           <Key>
@@ -7621,7 +7625,7 @@
           <Property Name="IdUsuario" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Rol_Detalle' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Rol_Detalle' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Rol_Detalle">
           <Key>
@@ -7706,7 +7710,7 @@
           <Property Name="rub_tipcal" Type="int" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_rol_detalle_x_rubro_acumulado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_rol_detalle_x_rubro_acumulado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_rol_detalle_x_rubro_acumulado">
           <Key>
@@ -7723,7 +7727,7 @@
           <Property Name="Valor" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Rol_DetalleXEmpleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Rol_DetalleXEmpleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Rol_DetalleXEmpleado">
           <Key>
@@ -7768,7 +7772,7 @@
           <Property Name="rub_visible_reporte" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Rol_Rubros_Acumulados' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Rol_Rubros_Acumulados' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Rol_Rubros_Acumulados">
           <Key>
@@ -7808,7 +7812,7 @@
           <Property Name="IdNomina_TipoLiqui" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_rubro_tipo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_rubro_tipo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_rubro_tipo">
           <Key>
@@ -7820,7 +7824,7 @@
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Rubro_x_Empleado_x_nomina_x_TipoLiqui' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Rubro_x_Empleado_x_nomina_x_TipoLiqui' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Rubro_x_Empleado_x_nomina_x_TipoLiqui">
           <Key>
@@ -7843,7 +7847,7 @@
           <Property Name="ru_descripcion" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_rubros_acumulados_x_empleados' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_rubros_acumulados_x_empleados' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_rubros_acumulados_x_empleados">
           <Key>
@@ -7858,7 +7862,7 @@
           <Property Name="RUBRO" Type="varchar" Nullable="false" MaxLength="30" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Rubros_x_Empresa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Rubros_x_Empresa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Rubros_x_Empresa">
           <Key>
@@ -7915,7 +7919,7 @@
           <Property Name="rub_aplica_IESS" Type="bit" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Solicitud_Vacaciones' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Solicitud_Vacaciones' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Solicitud_Vacaciones">
           <Key>
@@ -7977,13 +7981,13 @@
           <Property Name="IdSolicitud" Type="int" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_Solicitud_Vacaciones_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_Solicitud_Vacaciones_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Solicitud_Vacaciones_x_empleado">
           <Key>
             <PropertyRef Name="IdEmpresa" />
             <PropertyRef Name="IdNomina_Tipo" />
-            <PropertyRef Name="IdSolicitud_Vacaciones" />
+            <PropertyRef Name="IdLiquidacion" />
             <PropertyRef Name="IdEmpleado" />
             <PropertyRef Name="Dias_a_disfrutar" />
             <PropertyRef Name="Fecha_Desde" />
@@ -7992,7 +7996,7 @@
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdNomina_Tipo" Type="int" Nullable="false" />
-          <Property Name="IdSolicitud_Vacaciones" Type="int" Nullable="false" />
+          <Property Name="IdLiquidacion" Type="int" Nullable="false" />
           <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
           <Property Name="Dias_a_disfrutar" Type="int" Nullable="false" />
           <Property Name="Fecha_Desde" Type="date" Nullable="false" />
@@ -8002,7 +8006,7 @@
           <Property Name="Iess" Type="float" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Sueldo_Basico_x_Empleado_x_anio' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Sueldo_Basico_x_Empleado_x_anio' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Sueldo_Basico_x_Empleado_x_anio">
           <Key>
@@ -8019,7 +8023,7 @@
           <Property Name="sb_valor" Type="float" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_TipoContrato' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_TipoContrato' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_TipoContrato">
           <Key>
@@ -8038,7 +8042,7 @@
           <Property Name="IdTipoCatalogo" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_titulos' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_titulos' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_titulos">
           <Key>
@@ -8057,7 +8061,7 @@
           <Property Name="orden" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwRo_Total_IngEgr_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwRo_Total_IngEgr_x_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwRo_Total_IngEgr_x_Empleado">
           <Key>
@@ -8085,7 +8089,7 @@
           <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.dbo.vwro_turno_x_tb_dia' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'DBERP_GRAF.dbo.vwro_turno_x_tb_dia' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_turno_x_tb_dia">
           <Key>
@@ -9538,7 +9542,6 @@
             <Parameter Name="Anio" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="ro_Comprobantes_Contables" EntityType="DBERPModelRoles.ro_Comprobantes_Contables" />
-          <EntitySet Name="ro_Cuentas_contables_x_empleado" EntityType="DBERPModelRoles.ro_Cuentas_contables_x_empleado" />
           <EntitySet Name="vwRo_Parametros_Contables" EntityType="DBERPModelRoles.vwRo_Parametros_Contables" />
           <EntitySet Name="ro_catalogoTipo" EntityType="DBERPModelRoles.ro_catalogoTipo" />
           <AssociationSet Name="FK_ro_Catalogo_ro_CatalogoTipo" Association="DBERPModelRoles.FK_ro_Catalogo_ro_CatalogoTipo">
@@ -9905,6 +9908,7 @@
             <End Role="ro_Historico_Liquidacion_Vacaciones" EntitySet="ro_Historico_Liquidacion_Vacaciones" />
             <End Role="ro_Historico_Liquidacion_Vacaciones_Det_DescNovedad" EntitySet="ro_Historico_Liquidacion_Vacaciones_Det_DescNovedad" />
           </AssociationSet>
+          <EntitySet Name="ro_Cuentas_contables_x_empleado" EntityType="DBERPModelRoles.ro_Cuentas_contables_x_empleado" />
           </EntityContainer>
         <EntityType Name="ro_catalogo">
           <Key>
@@ -13101,18 +13105,6 @@
           <Property Type="Int32" Name="IdPeriodo" Nullable="false" />
           <Property Type="String" Name="cb_Observacion" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ro_Cuentas_contables_x_empleado">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdEmpleado" />
-            <PropertyRef Name="IdRubro" />
-            <PropertyRef Name="IdCtaCble" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="IdRubro" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdCtaCble" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="vwRo_Parametros_Contables">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -15874,6 +15866,7 @@
             <PropertyRef Name="Fecha_Desde" />
             <PropertyRef Name="Fecha_Hasta" />
             <PropertyRef Name="ValorCancelado" />
+            <PropertyRef Name="IdLiquidacion" />
           </Key>
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
@@ -15885,6 +15878,7 @@
           <Property Type="Boolean" Name="Gozadas_Pgadas" />
           <Property Type="Double" Name="ValorCancelado" Nullable="false" />
           <Property Type="Double" Name="Iess" />
+          <Property Type="Int32" Name="IdLiquidacion" Nullable="false" />
         </EntityType>
         <EntityType Name="ro_rubro_tipo">
           <Key>
@@ -16503,6 +16497,7 @@
           <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="MotivoAnulacion" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Cod_region" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Carga_Todos_Empleados" />
         </EntityType>
         <EntityType Name="ro_Historico_Liquidacion_Vacaciones">
           <Key>
@@ -16651,6 +16646,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ro_Cuentas_contables_x_empleado">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdRubro" />
+            <PropertyRef Name="IdCtaCble" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="IdRubro" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdCtaCble" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdPunto_cargo" />
+          <Property Type="Int32" Name="IdPunto_cargo_grupo" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -19092,16 +19101,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ro_Cuentas_contables_x_empleado">
-            <EntityTypeMapping TypeName="DBERPModelRoles.ro_Cuentas_contables_x_empleado">
-              <MappingFragment StoreEntitySet="ro_Cuentas_contables_x_empleado">
-                <ScalarProperty Name="IdCtaCble" ColumnName="IdCtaCble" />
-                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwRo_Parametros_Contables">
             <EntityTypeMapping TypeName="DBERPModelRoles.vwRo_Parametros_Contables">
               <MappingFragment StoreEntitySet="vwRo_Parametros_Contables">
@@ -20667,6 +20666,7 @@
           <EntitySetMapping Name="vwro_Solicitud_Vacaciones_x_empleado">
             <EntityTypeMapping TypeName="DBERPModelRoles.vwro_Solicitud_Vacaciones_x_empleado">
               <MappingFragment StoreEntitySet="vwro_Solicitud_Vacaciones_x_empleado">
+                <ScalarProperty Name="IdLiquidacion" ColumnName="IdLiquidacion" />
                 <ScalarProperty Name="Iess" ColumnName="Iess" />
                 <ScalarProperty Name="ValorCancelado" ColumnName="ValorCancelado" />
                 <ScalarProperty Name="Gozadas_Pgadas" ColumnName="Gozadas_Pgadas" />
@@ -20674,7 +20674,6 @@
                 <ScalarProperty Name="Fecha_Desde" ColumnName="Fecha_Desde" />
                 <ScalarProperty Name="Dias_a_disfrutar" ColumnName="Dias_a_disfrutar" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="IdSolicitud_Vacaciones" ColumnName="IdSolicitud_Vacaciones" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
@@ -21034,6 +21033,7 @@
           <EntitySetMapping Name="ro_periodo_x_ro_Nomina_TipoLiquiDisponibles">
             <EntityTypeMapping TypeName="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiquiDisponibles">
               <MappingFragment StoreEntitySet="ro_periodo_x_ro_Nomina_TipoLiquiDisponibles">
+                <ScalarProperty Name="Carga_Todos_Empleados" ColumnName="Carga_Todos_Empleados" />
                 <ScalarProperty Name="Cod_region" ColumnName="Cod_region" />
                 <ScalarProperty Name="MotivoAnulacion" ColumnName="MotivoAnulacion" />
                 <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
@@ -21152,6 +21152,18 @@
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="IdSolicitudVaca" ColumnName="IdSolicitudVaca" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_Cuentas_contables_x_empleado">
+            <EntityTypeMapping TypeName="DBERPModelRoles.ro_Cuentas_contables_x_empleado">
+              <MappingFragment StoreEntitySet="ro_Cuentas_contables_x_empleado">
+                <ScalarProperty Name="IdPunto_cargo_grupo" ColumnName="IdPunto_cargo_grupo" />
+                <ScalarProperty Name="IdPunto_cargo" ColumnName="IdPunto_cargo" />
+                <ScalarProperty Name="IdCtaCble" ColumnName="IdCtaCble" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

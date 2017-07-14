@@ -18,5 +18,7 @@ namespace Core.Erp.Data
         public decimal IdEmpleado { get; set; }
         public string IdRubro { get; set; }
         public string IdCtaCble { get; set; }
+        public Nullable<int> IdPunto_cargo { get; set; }
+        public Nullable<int> IdPunto_cargo_grupo { get; set; }
     }
 }

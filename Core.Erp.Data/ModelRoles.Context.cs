@@ -151,7 +151,6 @@ namespace Core.Erp.Data
         public DbSet<ro_horario> ro_horario { get; set; }
         public DbSet<vwRO_empleado_x_Perido_Nomina> vwRO_empleado_x_Perido_Nomina { get; set; }
         public DbSet<ro_Comprobantes_Contables> ro_Comprobantes_Contables { get; set; }
-        public DbSet<ro_Cuentas_contables_x_empleado> ro_Cuentas_contables_x_empleado { get; set; }
         public DbSet<vwRo_Parametros_Contables> vwRo_Parametros_Contables { get; set; }
         public DbSet<ro_catalogoTipo> ro_catalogoTipo { get; set; }
         public DbSet<ro_nomina_x_horas_extras> ro_nomina_x_horas_extras { get; set; }
@@ -210,6 +209,7 @@ namespace Core.Erp.Data
         public DbSet<ro_Historico_Liquidacion_Vacaciones> ro_Historico_Liquidacion_Vacaciones { get; set; }
         public DbSet<ro_Solicitud_Vacaciones_x_empleado> ro_Solicitud_Vacaciones_x_empleado { get; set; }
         public DbSet<vwRo_Solicitud_Vacaciones> vwRo_Solicitud_Vacaciones { get; set; }
+        public DbSet<ro_Cuentas_contables_x_empleado> ro_Cuentas_contables_x_empleado { get; set; }
     
         public virtual ObjectResult<spRo_Nomina_Tipoliqui_x_Sueldo_Result> spRo_Nomina_Tipoliqui_x_Sueldo(Nullable<int> a)
         {

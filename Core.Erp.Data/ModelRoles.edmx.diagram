@@ -140,7 +140,6 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_empleado_x_horario_ro_horario" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRO_empleado_x_Perido_Nomina" Width="1.5" PointX="5.15901663394599" PointY="1.4008170670833517" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_Comprobantes_Contables" Width="1.5" PointX="0.16389871210041396" PointY="16.580788232656563" />
-        <EntityTypeShape EntityType="DBERPModelRoles.ro_Cuentas_contables_x_empleado" Width="1.5" PointX="4.1698932015196855" PointY="12.796365624664521" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_Parametros_Contables" Width="1.5" PointX="6.6266562522513119" PointY="6.726912784728647" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_catalogoTipo" Width="1.5" PointX="2.9857791918263672" PointY="1.32451623739885" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_Catalogo_ro_CatalogoTipo" />
@@ -265,6 +264,7 @@
         <EntityTypeShape EntityType="DBERPModelRoles.ro_Solicitud_Vacaciones_x_empleado" Width="1.5" PointX="9.7720485282000382" PointY="28.441669939291511" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_Solicitud_Vacaciones" Width="1.5" PointX="10.200871148240227" PointY="9.6737041071400522" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_Historico_Liquidacion_Vacaciones_Det_DescNovedad_ro_Historico_Liquidacion_Vacaciones" />
+        <EntityTypeShape EntityType="DBERPModelRoles.ro_Cuentas_contables_x_empleado" Width="1.5" PointX="9.0327217527817574" PointY="2.3241719465349671" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

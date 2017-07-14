@@ -28,5 +28,6 @@ namespace Core.Erp.Data
         public string IdUsuarioUltAnu { get; set; }
         public string MotivoAnulacion { get; set; }
         public string Cod_region { get; set; }
+        public Nullable<bool> Carga_Todos_Empleados { get; set; }
     }
 }
