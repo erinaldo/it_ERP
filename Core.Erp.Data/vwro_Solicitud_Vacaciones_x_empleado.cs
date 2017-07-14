@@ -16,7 +16,7 @@ namespace Core.Erp.Data
     {
         public int IdEmpresa { get; set; }
         public int IdNomina_Tipo { get; set; }
-        public int IdSolicitud_Vacaciones { get; set; }
+        public int IdLiquidacion { get; set; }
         public decimal IdEmpleado { get; set; }
         public int Dias_a_disfrutar { get; set; }
         public System.DateTime Fecha_Desde { get; set; }
@@ -24,6 +24,5 @@ namespace Core.Erp.Data
         public Nullable<bool> Gozadas_Pgadas { get; set; }
         public double ValorCancelado { get; set; }
         public Nullable<double> Iess { get; set; }
-        public int IdLiquidacion { get; set; }
     }
 }

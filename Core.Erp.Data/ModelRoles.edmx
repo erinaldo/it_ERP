@@ -9837,7 +9837,6 @@
           </FunctionImport>
           <EntitySet Name="ro_permiso_x_empleado" EntityType="DBERPModelRoles.ro_permiso_x_empleado" />
           <EntitySet Name="vwRo_Permiso_x_Empleado" EntityType="DBERPModelRoles.vwRo_Permiso_x_Empleado" />
-          <EntitySet Name="vwro_Solicitud_Vacaciones_x_empleado" EntityType="DBERPModelRoles.vwro_Solicitud_Vacaciones_x_empleado" />
           <EntitySet Name="ro_rubro_tipo" EntityType="DBERPModelRoles.ro_rubro_tipo" />
           <AssociationSet Name="FK_ro_rol_detalle_ro_rubro_tipo" Association="DBERPModelRoles.FK_ro_rol_detalle_ro_rubro_tipo">
             <End Role="ro_rubro_tipo" EntitySet="ro_rubro_tipo" />
@@ -9909,6 +9908,7 @@
             <End Role="ro_Historico_Liquidacion_Vacaciones_Det_DescNovedad" EntitySet="ro_Historico_Liquidacion_Vacaciones_Det_DescNovedad" />
           </AssociationSet>
           <EntitySet Name="ro_Cuentas_contables_x_empleado" EntityType="DBERPModelRoles.ro_Cuentas_contables_x_empleado" />
+          <EntitySet Name="vwro_Solicitud_Vacaciones_x_empleado" EntityType="DBERPModelRoles.vwro_Solicitud_Vacaciones_x_empleado" />
           </EntityContainer>
         <EntityType Name="ro_catalogo">
           <Key>
@@ -15856,30 +15856,6 @@
           <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
           <Property Type="Decimal" Name="IdNovedad" Precision="9" Scale="0" />
         </EntityType>
-        <EntityType Name="vwro_Solicitud_Vacaciones_x_empleado">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdNomina_Tipo" />
-            <PropertyRef Name="IdSolicitud_Vacaciones" />
-            <PropertyRef Name="IdEmpleado" />
-            <PropertyRef Name="Dias_a_disfrutar" />
-            <PropertyRef Name="Fecha_Desde" />
-            <PropertyRef Name="Fecha_Hasta" />
-            <PropertyRef Name="ValorCancelado" />
-            <PropertyRef Name="IdLiquidacion" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
-          <Property Type="Int32" Name="IdSolicitud_Vacaciones" Nullable="false" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="Dias_a_disfrutar" Nullable="false" />
-          <Property Type="DateTime" Name="Fecha_Desde" Nullable="false" Precision="0" />
-          <Property Type="DateTime" Name="Fecha_Hasta" Nullable="false" Precision="0" />
-          <Property Type="Boolean" Name="Gozadas_Pgadas" />
-          <Property Type="Double" Name="ValorCancelado" Nullable="false" />
-          <Property Type="Double" Name="Iess" />
-          <Property Type="Int32" Name="IdLiquidacion" Nullable="false" />
-        </EntityType>
         <EntityType Name="ro_rubro_tipo">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -16659,6 +16635,28 @@
           <Property Type="String" Name="IdCtaCble" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IdPunto_cargo" />
           <Property Type="Int32" Name="IdPunto_cargo_grupo" />
+        </EntityType>
+        <EntityType Name="vwro_Solicitud_Vacaciones_x_empleado">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="IdLiquidacion" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="Dias_a_disfrutar" />
+            <PropertyRef Name="Fecha_Desde" />
+            <PropertyRef Name="Fecha_Hasta" />
+            <PropertyRef Name="ValorCancelado" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
+          <Property Type="Int32" Name="IdLiquidacion" Nullable="false" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Dias_a_disfrutar" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Desde" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="Fecha_Hasta" Nullable="false" Precision="0" />
+          <Property Type="Boolean" Name="Gozadas_Pgadas" />
+          <Property Type="Double" Name="ValorCancelado" Nullable="false" />
+          <Property Type="Double" Name="Iess" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -20663,22 +20661,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwro_Solicitud_Vacaciones_x_empleado">
-            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_Solicitud_Vacaciones_x_empleado">
-              <MappingFragment StoreEntitySet="vwro_Solicitud_Vacaciones_x_empleado">
-                <ScalarProperty Name="IdLiquidacion" ColumnName="IdLiquidacion" />
-                <ScalarProperty Name="Iess" ColumnName="Iess" />
-                <ScalarProperty Name="ValorCancelado" ColumnName="ValorCancelado" />
-                <ScalarProperty Name="Gozadas_Pgadas" ColumnName="Gozadas_Pgadas" />
-                <ScalarProperty Name="Fecha_Hasta" ColumnName="Fecha_Hasta" />
-                <ScalarProperty Name="Fecha_Desde" ColumnName="Fecha_Desde" />
-                <ScalarProperty Name="Dias_a_disfrutar" ColumnName="Dias_a_disfrutar" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ro_rubro_tipo">
             <EntityTypeMapping TypeName="DBERPModelRoles.ro_rubro_tipo">
               <MappingFragment StoreEntitySet="ro_rubro_tipo">
@@ -21164,6 +21146,22 @@
                 <ScalarProperty Name="IdCtaCble" ColumnName="IdCtaCble" />
                 <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwro_Solicitud_Vacaciones_x_empleado">
+            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_Solicitud_Vacaciones_x_empleado">
+              <MappingFragment StoreEntitySet="vwro_Solicitud_Vacaciones_x_empleado">
+                <ScalarProperty Name="Iess" ColumnName="Iess" />
+                <ScalarProperty Name="ValorCancelado" ColumnName="ValorCancelado" />
+                <ScalarProperty Name="Gozadas_Pgadas" ColumnName="Gozadas_Pgadas" />
+                <ScalarProperty Name="Fecha_Hasta" ColumnName="Fecha_Hasta" />
+                <ScalarProperty Name="Fecha_Desde" ColumnName="Fecha_Desde" />
+                <ScalarProperty Name="Dias_a_disfrutar" ColumnName="Dias_a_disfrutar" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdLiquidacion" ColumnName="IdLiquidacion" />
+                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>
